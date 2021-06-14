@@ -22,53 +22,53 @@ int index;
 
 enum Direction
 {
-  forward,
-  backward,
-  right,
-  left,
-  neutral
+    forward,
+    backward,
+    right,
+    left,
+    neutral
 };
 
 Direction direction = neutral;
 
 void Forward(bool debug=false)
 {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW); 
-  digitalWrite(IN3, LOW); 
-  digitalWrite(IN4, HIGH);
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW); 
+    digitalWrite(IN3, LOW); 
+    digitalWrite(IN4, HIGH);
 }
 
 void Backward(bool debug=false)
 {
-  digitalWrite(IN1, LOW); 
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+    digitalWrite(IN1, LOW); 
+    digitalWrite(IN2, HIGH);
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, LOW);
 }
 
 void Right(bool debug=false)
 {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, LOW);
 }
 
 void Left(bool debug=false)
 {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, HIGH);
 }
 
 void Stop(bool debug=false)
 {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, LOW);
 }
 
 void RawInput(bool debug=false)
@@ -98,33 +98,35 @@ void RawInput(bool debug=false)
 
 void Move(bool debug=false)
 {
-  switch (direction)
-  {
-    case forward : Forward(debug); break;
-    case backward : Backward(debug); break;
-    case left : Left(debug); break;
-    case right : Right(debug); break;
-    default : Stop(debug); break;
-  }
+    switch (direction)
+    {
+        case forward : Forward(debug); break;
+        case backward : Backward(debug); break;
+        case left : Left(debug); break;
+        case right : Right(debug); break;
+        default : Stop(debug); break;
+    }
 }
 
 
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(ENA, OUTPUT);
-  pinMode(ENB, OUTPUT);
-  pinMode(IN1, OUTPUT);
-  pinMode(IN2, OUTPUT);
-  pinMode(IN3, OUTPUT);
-  pinMode(IN4, OUTPUT);
+void setup() 
+{
+    // put your setup code here, to run once:
+    Serial.begin(9600);
+    pinMode(ENA, OUTPUT);
+    pinMode(ENB, OUTPUT);
+    pinMode(IN1, OUTPUT);
+    pinMode(IN2, OUTPUT);
+    pinMode(IN3, OUTPUT);
+    pinMode(IN4, OUTPUT);
   
-  digitalWrite(ENA, HIGH); // same as analogWrite(ENA, 255);
-  digitalWrite(ENB, HIGH);
+    digitalWrite(ENA, HIGH); // same as analogWrite(ENA, 255);
+    digitalWrite(ENB, HIGH);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  RawInput(true);
-  Move(true);
+void loop() 
+{
+    // put your main code here, to run repeatedly:
+    RawInput(true);
+    Move(true);
 }
