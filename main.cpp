@@ -71,11 +71,14 @@ void Stop(bool debug=false)
   digitalWrite(IN4, LOW);
 }
 
-void RawInput()
+void RawInput(bool debug=false)
 {
-    char result;
-    int input = Serial.read();
-    Serial.println(' ' + input);
+    if (debug)
+    {
+        char result;
+        int input = Serial.read();
+        Serial.println(' ' + input);
+    }
 
     index++;
     if (index == tokenLocation)
@@ -90,10 +93,7 @@ void RawInput()
         }
     }
 
-    if (input == startToken)
-    {
-        index = 0;
-    }
+    if (input == startToken) index = 0;
 }
 
 void Move(bool debug=false)
@@ -119,12 +119,12 @@ void setup() {
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
   
-  digitalWrite(ENA, HIGH);
+  digitalWrite(ENA, HIGH); // same as analogWrite(ENA, 255);
   digitalWrite(ENB, HIGH);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  RawInput();
+  RawInput(true);
   Move(true);
 }
