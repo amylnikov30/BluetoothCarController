@@ -8,17 +8,17 @@
 #define IN2 9
 #define IN1 11
 
-const int input_l = 49;
-const int input_r = 50;
-const int input_f = 51;
-const int input_b = 52;
+#define input_l 49
+#define input_r 50
+#define input_f 51
+#define input_b 52
+
+#define startToken 123
+#define endToken 125
+
+#define tokenLocation 6
 
 int index;
-
-const int startToken = 123;
-const int endToken = 125;
-
-const int tokenLocation = 6;
 
 enum Direction
 {
@@ -33,18 +33,18 @@ Direction direction = neutral;
 
 void Forward(bool debug=false)
 {
-  digitalWrite(IN1, HIGH); //set IN1 hight level
-  digitalWrite(IN2, LOW); //set IN2 low level
-  digitalWrite(IN3, LOW); //set IN3 low level
-  digitalWrite(IN4, HIGH); //set IN4 hight level
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW); 
+  digitalWrite(IN3, LOW); 
+  digitalWrite(IN4, HIGH);
 }
 
 void Backward(bool debug=false)
 {
-  digitalWrite(IN1, LOW); //set IN1 hight level
-  digitalWrite(IN2, HIGH); //set IN2 low level
-  digitalWrite(IN3, HIGH); //set IN3 low level
-  digitalWrite(IN4, LOW); //set IN4 hight level
+  digitalWrite(IN1, LOW); 
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
 }
 
 void Right(bool debug=false)
@@ -76,17 +76,7 @@ void RawInput()
     char result;
     int input = Serial.read();
     Serial.println(' ' + input);
-    // Serial.print(' ');
 
-    // buttons
-//    if (input == 102) // ascii code for f
-//    {
-//        MotorTest();
-//        Serial.println("Called MotorTest()");
-// 
-//    }
-
-    // analog stick
     index++;
     if (index == tokenLocation)
     {
@@ -118,20 +108,6 @@ void Move(bool debug=false)
   }
 }
 
-//void GetInput(bool debug=false)
-//{
-//  int rawInput = ;
-//  char input = char(rawInput);
-//
-//  switch (input)
-//  {
-//    case 'w' : direction = forward; break;
-//    case 'a' : direction = left; break;
-//    case 's' : direction = backward; break;
-//    case 'd' : direction = left; break;
-//    default : break;
-//  }
-//}
 
 void setup() {
   // put your setup code here, to run once:
@@ -143,12 +119,12 @@ void setup() {
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
   
-  digitalWrite(ENA, HIGH); //enable L298n A channel
-  digitalWrite(ENB, HIGH); //enable L298n B channel
+  digitalWrite(ENA, HIGH);
+  digitalWrite(ENB, HIGH);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   RawInput();
-  Move();
+  Move(true);
 }
